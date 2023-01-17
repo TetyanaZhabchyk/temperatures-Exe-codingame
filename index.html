@@ -12,5 +12,58 @@
 	<div id="root"></div>
 	
 </body>
+<p> Todo:
+1.	On commence par trouver comment  humain  fais pour trouver le plus petit.
+
+2. Ensuite on a compris qu'il faut une boucle pour parcourir tous les chiffres.
+
+3. Pour trouver le plus petit il faut initialiser la variable qui va contenir ce nombre au 
+nombre le plus grand (ici 5526)
+
+4. Ensuite on compare (if t < nearZero) à chaque nombre de la liste, le nombre trouvé 
+comme plus petit et on remplace ce plus petit nombre pas ce nombre s'il est plus petit (nearZero= t).
+
+Le problème ici c'est que l'on veut pas le plus petit nombre mais le plus proche de 0 
+(sinon le plus petit c'est un nombre négatif qui peut être très loin de zéro ex :-273). 
+Donc ce qu'on veut comparer c'est la distance à zéro. 
+Pour ça on a la valeur absolue du nombre (ex -2 est plus loin de 
+zéro que 1 car il y a 2 degrés entre 0 et -2 mais 1 degré entre 0 et 1). La valeur absolue 
+c'est le nombre sans son signe.
+
+5. Si on a pas de nombre dans la liste alors nearZero est restée à la plus grande valeur 
+donc on teste ça et on retourne zéro ou nearZero.
+
+Problème comme ça le test 2 ne fonctionne pas. 
+En effet, il est dit dans l'énoncé que si il y a -5 et 5 on doit prendre 5. 
+
+6. Donc on rajoute un test pour savoir si en cas d'égalité entre le plus petit 
+trouvé et le nombre en cours, le nombre en cours est positif ou négatif. 
+S'il est positif alors on remplace nearZero par le nombre en cours sinon on ne fait rien 
+
+**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+
+const n = parseInt(readline()); // the number of temperatures to analyse
+let nearZero = 5526
+var inputs = readline().split(' ');
+for (let i = 0; i < n; i++) {
+    const t = parseInt(inputs[i]);// a temperature expressed as an integer ranging from -273 to 5526
+    if(Math.abs(t) < Math.abs(nearZero))
+        nearZero = t;
+    if(Math.abs(t) == Math.abs(nearZero))
+        if(t > 0)
+            nearZero = t;
+}
+
+// Write an answer using console.log()
+// To debug: console.error('Debug messages...');
+if(nearZero != 5526)
+    console.log(nearZero);
+else
+    console.log(0)
+
+</p>
 
 </html>
